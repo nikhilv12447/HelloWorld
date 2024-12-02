@@ -1,0 +1,23 @@
+{
+  "name": "Hello World",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build-server": "webpack --config ./config/webpack/server.config.js",
+    "start-server": "npm run build-server && node ./build/server/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@babel/core": "^7.25.9",
+    "@babel/preset-env": "^7.25.9",
+    "@babel/preset-react": "^7.25.9",
+    "babel-loader": "^9.2.1",
+    "webpack": "^5.95.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "express": "^4.21.1"
+  }
+}
