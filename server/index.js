@@ -8,7 +8,7 @@ app.get("/", (req, res) => {
             <html>
                 <head></head>
                 <body>
-                    <h1>Hello world</h1>
+                    <h1>Wlcome to my dashboard</h1>
                 </body>
             </html>
         `
