@@ -9,6 +9,7 @@ app.get("/", (req, res) => {
                 <head></head>
                 <body>
                     <h1>Wlcome to my dashboard</h1>
+                    <h2>updated content</h2>
                 </body>
             </html>
         `
