@@ -11,4 +11,6 @@ module.exports = {
     server: getResolvedPath("server"),
     client: getResolvedPath("client"),
     build: getResolvedPath('build'),
+    config: getResolvedPath('config'),
+    utils: getResolvedPath('utils')
 }

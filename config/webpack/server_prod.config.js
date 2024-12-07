@@ -3,7 +3,7 @@ const path = require("../../utils/path")
 
 module.exports = {
     target: "node",
-    mode: "development",
+    mode: "production",
     entry: {
         server: path.server("index.js")
     },

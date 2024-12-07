@@ -1,15 +1,17 @@
 const commonConfig = require("./commonConfig")
 const path = require("../../utils/path")
+const applicationConfig = require("../applicationConfig.json")
 
 module.exports = {
-    target: "node",
+    target: "web",
     mode: "development",
     entry: {
-        server: path.server("index.js")
+        main: path.client("index.js")
     },
     output: {
         filename: '[name].js',
-        path: path.build("server")
+        path: path.build("client"),
+        publicPath: applicationConfig.cdnBaseUrl
     },
     ...commonConfig
 }
