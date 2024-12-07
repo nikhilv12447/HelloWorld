@@ -10,9 +10,8 @@ const app = express()
 const PORT = process.env.PORT || config.port
 const env = process.env.BUILD_TYPE || "development"
 env === "development" && app.use(express.static(path.build("client")))
-console.log("request server from port: ", PORT)
 app.get("/", (req, res) => {
-
+    console.log("request server from port: ", PORT)
     const { pipe, abort } = renderToPipeableStream(
         <HTML>
             <App />
