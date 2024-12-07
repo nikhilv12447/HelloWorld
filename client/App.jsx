@@ -1,5 +1,6 @@
-import React from "react";
+import React, { Suspense } from "react";
 import config from "config/applicationConfig.json"
+const Feed = React.lazy(() => import("./components/Feed"))
 
 function App() {
     return <div id="main">
@@ -10,6 +11,10 @@ function App() {
                     <a href="">{productName}</a>
                 </li>
             })}
+
+            <Suspense fallback={() => <span>Loading..</span>}>
+                <Feed />
+            </Suspense>
         </ul>
     </div>
 }
