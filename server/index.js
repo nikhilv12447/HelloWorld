@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
             <App />
         </HTML>,
         {
-            bootstrapScripts: [`${config.cdnBaseUrl}/main.js`],
+            bootstrapScripts: [`${config.cdnBaseUrl}main.js`],
             onShellReady: () => {
                 res.setHeader('content-type', 'text/html');
                 pipe(res)
