@@ -4,9 +4,11 @@
   "main": "index.js",
   "scripts": {
     "build-dev": "webpack --config ./config/webpack/server.config.js && webpack --config ./config/webpack/client.config.js",
-    "start-dev-server": "npm run build-dev && pm2 start ./config/ecosystem.config.js",
+    "start-dev-server": "pm2 kill && npm run build salon && node generateEcoSystem.js salon",
     "build-prod": "webpack --config ./config/webpack/server_prod.config.js && webpack --config ./config/webpack/client_prod.config.js",
-    "start-prod-server": "npm run build-prod && pm2 start ./config/ecosystem.config.js --env production"
+    "start-prod-server": "npm run build-prod && pm2 start ./config/ecosystem.config.js --env production",
+    "build": "node buildMaster.js",
+    "start": "node generateEcoSystem.js"
   },
   "author": "",
   "license": "ISC",
@@ -22,6 +24,7 @@
   "dependencies": {
     "express": "^4.21.1",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0"
   }
 }

@@ -17,7 +17,8 @@ module.exports = {
         alias: {
             config: path.config(),
             app$: path.client("App.jsx"),
-            utils: path.utils()
+            utils: path.utils(),
+            client: path.client()
         }
     }
 }

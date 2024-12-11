@@ -1,7 +1,7 @@
 import React from "react";
 
 function HTML(props) {
-    const { children } = props
+    const { children, scripts = [] } = props
 
     return <html lang="en">
         <head>
@@ -13,6 +13,7 @@ function HTML(props) {
             <div id="app">
                 {children}
             </div>
+            {scripts.map(url => <script src={url}></script>)}
         </body>
     </html>
 }
