@@ -1,5 +1,4 @@
 import React from "react";
-import config from "config/applicationConfig.json"
 import { useNavigate } from "react-router-dom"
 
 function Home() {

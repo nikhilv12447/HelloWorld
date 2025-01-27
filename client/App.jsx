@@ -1,23 +1,25 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { Routes, Route } from "react-router-dom"
 import Home from "./components/Home"
 import About from "./components/About";
-const Feed = React.lazy(() => import("./components/Feed"))
-const SalonApp = React.lazy(() => import("salon/App"))
-import("salon/test").then(({printName}) => printName("Nikhil Verma"))
-function LazyComponent({ Component }) {
-    const Fallback = <div>Loading...</div>
-    return <Suspense fallback={Fallback}>
-        <Component />
-    </Suspense>
+import loadable from "loadable";
+
+const Feed = loadable(() => import("./components/Feed"))
+const SalonApp = loadable(() => import("salon/App"))
+
+function RemoteApps() {
+    return <>
+        <SalonApp />
+    </>
 }
 function App() {
     return <div id="main">
         <Routes>
             <Route path="/" Component={Home} />
             <Route path="/about" Component={About} />
-            <Route path="/feed" element={<LazyComponent Component={Feed} />} />
-            <Route path="/salon/*" element={<Suspense fallback="Loading..."><SalonApp /></Suspense>} />
+            <Route path="/feed" Component={Feed} />
+            {/* <Route path="*" Component={RemoteApps} /> */}
+            <Route path="/salon/*" Component={SalonApp} />
         </Routes>
     </div>
 }

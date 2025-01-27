@@ -1,7 +1,7 @@
 function getRemots(products = [], config = {}) {
     const remotes = {}
     products.forEach(product => {
-        remotes[product] = `${product}@${config[product].cdnBaseUrl}remoteEntry.js`
+        remotes[product] = `${product}@${config[product].cdnBaseUrl}/remoteEntry.js`
     })
     return remotes
 }

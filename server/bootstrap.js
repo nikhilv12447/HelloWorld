@@ -3,22 +3,27 @@ import express from "express"
 import HTML from "./HTML"
 import App from "app"
 import { renderToPipeableStream } from "react-dom/server"
-import config from "config/applicationConfig.json"
-import path from "utils/path"
+import path from "path"
 import { StaticRouter } from "react-router-dom/server"
 
+const DEVELOPMENT = "development"
 const app = express()
-const PORT = process.env.PORT || config.port
-const env = process.env.BUILD_TYPE || "development"
-env === "development" && app.use(express.static(path.build("client")))
+const salon = express.Router()
+const PORT = process.env.PORT || SERVER_PORT
+const ENV = process.env.ENVIRONMENT || DEVELOPMENT
+
+ENV === DEVELOPMENT && app.use(express.static(path.resolve(__dirname, "../client")))
 
 function getScripts() {
-    const scripts = []
-    // const product = PRODUCTS?.split(",")
-    // Array.isArray(product) && product.forEach(product => config.products[product] && scripts.push(`${config.products[product].cdnBaseUrl}routes.js`))
-    scripts.push(`${config.cdnBaseUrl}main.js`)
+    const scripts = [CDN_BASE_URL + "/main.js"]
     return scripts
 }
+
+app.use("/salon", salon)
+
+salon.get("*", (req, res) => {
+    res.redirect(SALON_CDN_BASE_URL + req.url)
+})
 
 app.get("*", (req, res) => {
     console.log("request server from port: ", PORT)

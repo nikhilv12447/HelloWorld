@@ -1,18 +1,22 @@
-const { exec } = require('node:child_process');
-function execCmd(cmd) {
-    exec(cmd, (err, stdout, stderr) => {
-        if (err) {
-            // node couldn't execute the command
-            console.log(err)
-            return;
-        }
+const webpack = require("webpack")
+const clientConfig = require("./config/webpack/client.config")
+const serverConfig = require("./config/webpack/server.config")
+const products = process.env.PRODUCTS || process.argv[2]
 
-        console.log(`stdout: ${stdout}`);
-        console.log(`stdout: ${stderr}`);
-    });
+function callback(err, stats) {
+    if (err) {
+        console.error(err);
+        return;
+    }
+
+    console.log(stats.toString({
+        chunks: false,
+        colors: true
+    }));
 }
-const products = process.argv[2]
-const serverBuildCmd = `npx webpack ${products ? `--env PRODUCTS=${products}` : ""} --config ./config/webpack/server.config.js`
-const clientBuildCmd = `npx webpack ${products ? `--env PRODUCTS=${products}` : ""} --config ./config/webpack/client.config.js`
-execCmd(serverBuildCmd)
-execCmd(clientBuildCmd)
+const clientCompiler = webpack(clientConfig({ PRODUCTS: products ? products : null }))
+const serverCompiler = webpack(serverConfig({ PRODUCTS: products ? products : null }))
+clientCompiler.watchMode = true
+serverCompiler.watchMode = true
+clientCompiler.watch({}, callback)
+serverCompiler.watch({}, callback)

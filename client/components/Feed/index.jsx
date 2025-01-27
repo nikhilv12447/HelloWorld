@@ -1,19 +1,16 @@
-import React, { Suspense } from "react";
-const Button = React.lazy(() => import("common/Button"))
-
-function LazyComponent({ children }) {
-    const Fallback = <div>Loading...</div>
-    return <Suspense fallback={Fallback}>
-        {children}
-    </Suspense>
-}
+import React from "react";
+import Button from "common/components/Button"
+import { useNavigate } from "react-router-dom";
 
 function Feed() {
+    const nevigate = useNavigate();
+
+    function handleOnClick() {
+        nevigate("/")
+    }
     return <div>
         Feed
-        <LazyComponent>
-            <Button name="Click Me" />
-        </LazyComponent>
+        <Button name="Home" handleOnClick={handleOnClick} />
     </div>
 }
 

@@ -1,7 +1,7 @@
 const path = require("path")
 const currentWorkingDir = process.cwd()
 
-function getResolvedPath (baseDir) {
+function getResolvedPath(baseDir) {
     return function (...paths) {
         return path.resolve(currentWorkingDir, baseDir, ...paths)
     }
@@ -13,5 +13,9 @@ module.exports = {
     build: getResolvedPath('build'),
     config: getResolvedPath('config'),
     utils: getResolvedPath('utils'),
-    products: getResolvedPath('products')
+    products: getResolvedPath('products'),
+    reduxStore: getResolvedPath('reduxStore'),
+    loadable: getResolvedPath('loadable'),
+    fetch: getResolvedPath('fetch'),
+    common: getResolvedPath("common")
 }
